@@ -66,6 +66,12 @@ VALUES
 
 ## Exception Handling
 
-1. Create custom Exception classes that extends `RunTimeException`.
-2. Add the custom exceptions to input validation.
-3. Create a `GlobalExceptionHandler` to handle multiple customized exceptions.
+1. Add the custom exceptions to input validation.
+2. Create a `GlobalExceptionHandler` to handle multiple customized exceptions.
+3. Create class `SimpleResponse` so the exceptions return JSON rather than a string.
+4. Create `CustomBaseException`.
+5. Create custom Exception classes that extends `CustomBaseException`.
+
+## Unit Testing
+
+- Use `SpringBootTest` annotation.

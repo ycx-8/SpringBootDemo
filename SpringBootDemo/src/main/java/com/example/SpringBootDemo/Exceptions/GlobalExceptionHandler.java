@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(ProductNotFoundException.class)
-    public ResponseEntity<String> handleProductNotFoundException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+    public ResponseEntity<SimpleResponse> handleProductNotFoundException(CustomBaseException exception) {
+        return ResponseEntity.status(exception.getStatus()).body(exception.getSimpleResponse());
     }
 
-    
+
 }
