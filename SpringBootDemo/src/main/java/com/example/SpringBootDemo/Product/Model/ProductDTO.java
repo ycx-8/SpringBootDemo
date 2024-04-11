@@ -13,4 +13,16 @@ public class ProductDTO {
         this.description = product.getDescription();
         this.price = product.getPrice();
     }
+
+    /**
+     * This constructor is used for declaring @Query method (for custom queries) at the Repository level.
+     * @param name
+     * @param description
+     * @param price
+     */
+    public ProductDTO(String name, String description, Double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 }

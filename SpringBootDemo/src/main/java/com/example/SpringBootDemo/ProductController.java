@@ -36,9 +36,20 @@ public class ProductController {
     @Autowired
     private DeleteProductCommandHandler deleteProductCommandHandler;
 
+    @GetMapping("/search/{maxPrice}")
+    public ResponseEntity<List<Product>> findProductByPrice(@PathVariable Double maxPrice) {
+        return ResponseEntity.ok(productRepository.findProductsWithPriceLessThan(maxPrice));
+    }
+
     @GetMapping
     public ResponseEntity<List<ProductDTO>> getProducts() {
-        return getAllProductsQueryHandler.execute(null);
+        return getAllProductsQueryHandler.executeUsingCustomQuery(null);
+//        return getAllProductsQueryHandler.execute(null);
+    }
+
+    @GetMapping("/name={name}")
+    public ResponseEntity<Product> getProductByName(@PathVariable String name) {
+        return getProductQueryHandler.findProductByName(name);
     }
 
     // {id} in @GetMapping must match id in method parameter

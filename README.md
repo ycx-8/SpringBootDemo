@@ -75,3 +75,29 @@ VALUES
 ## Unit Testing
 
 - Use `SpringBootTest` annotation.
+- Make sure my unit tests fail first, before making it pass.
+- Install maven and run `mvn test` to run all tests.
+- Use Lombok's AllArgs constructur annotation to create objects.
+- Arrange, Act, Assert
+
+## Layer of Abstraction for Data Access
+
+1. Relational database.
+2. JDBC: network connection to DB.
+3. JPA: a standard (abstract) that defines how a Java object is mapped to a relational DB.
+4. Hibernate: implementation of JPA (ORM: Object Relational Mapper).
+5. Spring Data JPA: allows default JPA methods like findById to be customized. e.g., findByAge.
+6. Java program
+
+### Custom Queries at a Repository Level
+
+```java
+import com.example.SpringBootDemo.Product.Model.Product;
+import org.springframework.data.jpa.repository.Query;
+
+@Query("SELECT p FROM product p WHERE p.price < :maxPrice")
+List<Product> findProductWithPriceLessThan();
+```
+
+- Alternative to having a DTO layer (memory costly) - getting data directly filtered through SQL queries is more efficient.
+- **Use Spring Data JPA to avoid writing any SQL queries.** Use keywords e.g., `findByDescriptionContaining(String str)` or `findByPriceLessThanOrderByPriceAsc(Double maxPrice)`.

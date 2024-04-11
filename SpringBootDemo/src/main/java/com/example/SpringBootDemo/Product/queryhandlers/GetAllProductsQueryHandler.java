@@ -23,4 +23,9 @@ public class GetAllProductsQueryHandler implements Query<Void, List<ProductDTO>>
                 .toList();
         return ResponseEntity.ok(productDTOS);
     }
+
+    public ResponseEntity<List<ProductDTO>> executeUsingCustomQuery(Void input) {
+        return ResponseEntity.ok(productRepository.getAllProductDTOs());
+    }
+
 }
